@@ -6,7 +6,7 @@
     <title>Свадьба Искандера и Арины</title>
     
     <style>
-        @import url('https://googleapis.com');
+        @import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Sofia+Sans+Extra+Condensed:wght@400;700&display=swap');
 
         :root {
             --primary-green: #6B705C; 
@@ -133,7 +133,7 @@
         <div class="container">
             <h2>Место проведения</h2>
             <div class="info-card">
-                <img src="https://pexels.com" style="width:100%; margin-bottom:20px; border-radius: 4px;">
+                <img src="path/to/your/image.jpg" style="width:100%; margin-bottom:20px; border-radius: 4px;">
                 <p><strong>ЭКО-ПАРК «ВОТЧИНА», Г. СОЧИ</strong></p>
                 <p>Мы выбрали место, где природа и уют сливаются воедино. Эко-парк «Вотчина» — это тихий оазис среди величественных гор Сочи, где вековые деревья и свежий воздух станут живыми декорациями нашего торжества.</p>
                 <a href="https://yandex.ru" class="btn" style="width: auto;">Карта проезда</a>
@@ -178,38 +178,39 @@
     <section class="sec-beige">
         <div class="container">
             <h2>Анкета гостя</h2>
-            <form id="weddingForm" class="rsvp-form">
-                <label>Ваше Имя и Фамилия</label>
-                <input type="text" placeholder="Введите имя" required>
+         <form id="weddingForm" class="rsvp-form" action="#" method="POST">
+    <label for="guestName">Ваше Имя и Фамилия</label>
+    <input type="text" id="guestName" name="name" placeholder="Введите имя" required>
 
-                <label>Ваши пожелания по еде</label>
-                <select>
-                    <option value="all">Ем всё</option>
-                    <option value="meat">Мясные блюда</option>
-                    <option value="fish">Рыба / Морепродукты</option>
-                    <option value="veg">Вегетарианское меню</option>
-                    <option value="allergy">Есть аллергия (укажу ниже)</option>
-                </select>
+    <label for="foodPref">Ваши пожелания по еде</label>
+    <select id="foodPref" name="food">
+        <option value="all">Ем всё</option>
+        <option value="meat">Мясные блюда</option>
+        <option value="fish">Рыба / Морепродукты</option>
+        <option value="veg">Вегетарианское меню</option>
+        <option value="allergy">Есть аллергия (укажу ниже)</option>
+    </select>
 
-                <label>Пожелания по напиткам</label>
-                <div style="font-size: 0.9rem;">
-                    <input type="checkbox"> Вино (белое/красное) <br>
-                    <input type="checkbox"> Шампанское <br>
-                    <input type="checkbox"> Крепкие напитки <br>
-                    <input type="checkbox"> Безалкогольные напитки
-                </div>
+    <label>Пожелания по напиткам</label>
+    <div style="font-size: 0.9rem;">
+        <label class="checkbox-item"><input type="checkbox" name="drinks" value="wine"> Вино (белое/красное)</label><br>
+        <label class="checkbox-item"><input type="checkbox" name="drinks" value="champagne"> Шампанское</label><br>
+        <label class="checkbox-item"><input type="checkbox" name="drinks" value="strong"> Крепкие напитки</label><br>
+        <label class="checkbox-item"><input type="checkbox" name="drinks" value="non-alcoholic"> Безалкогольные напитки</label>
+    </div>
 
-                <label>Нужен ли вам трансфер до локации?</label>
-                <div class="radio-group">
-                    <label class="radio-item"><input type="radio" name="tr" checked> Нет</label>
-                    <label class="radio-item"><input type="radio" name="tr"> Да</label>
-                </div>
+    <label>Нужен ли вам трансфер до локации?</label>
+    <div class="radio-group">
+        <label class="radio-item"><input type="radio" name="transfer" value="no" checked> Нет</label>
+        <label class="radio-item"><input type="radio" name="transfer" value="yes"> Да</label>
+    </div>
 
-                <label>Дополнительные пожелания</label>
-                <textarea rows="3" placeholder="Здесь можно написать об аллергиях или других деталях"></textarea>
+    <label for="notes">Дополнительные пожелания</label>
+    <textarea id="notes" name="notes" rows="3" placeholder="Здесь можно написать об аллергиях или других деталях"></textarea>
 
-                <button type="submit" class="btn">ПОДТВЕРДИТЬ УЧАСТИЕ</button>
-            </form>
+    <button type="submit" class="btn">ПОДТВЕРДИТЬ УЧАСТИЕ</button>
+</form>
+
         </div>
     </section>
 
@@ -219,18 +220,33 @@
     </footer>
 
     <script>
-        const weddingDate = new Date("May 24, 2026 15:00:00").getTime();
-        function updateTimer() {
-            const now = new Date().getTime();
-            const d = weddingDate - now;
-            if (d > 0) {
-                document.getElementById("days").innerText = Math.floor(d / (1000 * 60 * 60 * 24));
-                document.getElementById("hours").innerText = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                document.getElementById("minutes").innerText = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
-            }
-        }
+     const weddingDate = new Date("May 24, 2026 15:00:00").getTime();
+
+function updateTimer() {
+    const now = new Date().getTime();
+    const d = weddingDate - now;
+
+    if (d > 0) {
+        document.getElementById("days").textContent = Math.floor(d / (1000 * 60 * 60 * 24));
+        document.getElementById("hours").textContent = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("minutes").textContent = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
+    } else {
+        // Показываем сообщение, если дата прошла
+        document.getElementById("timer").innerHTML = "<div>Свадьба уже состоялась!</div>";
+        clearInterval(timerInterval);
+    }
+}
+
+const timerInterval = setInterval(updateTimer, 1000);
+updateTimer();
         setInterval(updateTimer, 1000); updateTimer();
-        document.getElementById('weddingForm').onsubmit = function(e) { e.preventDefault(); alert('Спасибо! Ваши данные успешно отправлены.'); };
+document.getElementById('weddingForm').onsubmit = function(e) {
+    e.preventDefault();
+    // Здесь можно добавить отправку данных на сервер
+    alert('Спасибо! Ваши данные успешно отправлены.');
+    this.reset(); // Очищаем форму после отправки
+};
+
     </script>
 </body>
 </html>
